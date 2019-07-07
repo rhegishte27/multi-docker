@@ -3,21 +3,21 @@ services:
         - docker
 
 before_install:
-        - docker build -t rhegishte/react-test -f ./client/Dockerfile.dev ./client
+        - docker build -t changa2127/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-        - docker run rhegishte/react-test npm test -- --coverage 
+        - docker run changa2127/react-test npm test -- --coverage 
 
 after_success:
-        - docker build -t rhegishte/multi-client ./client 
-        - docker build -t rhegishte/multi-nginx ./nginx
-        - docker build -t rhegishte/multi-server ./server
-        - docker build -t rhegishte/multi-worker ./worker
+        - docker build -t changa2127/multi-client ./client 
+        - docker build -t changa2127/multi-nginx ./nginx
+        - docker build -t changa2127/multi-server ./server
+        - docker build -t changa2127/multi-worker ./worker
         
         #Log in to Docker CLI
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
         #Take those images and push them to docker hub
-        - docker push rhegishte/multi-client
-        - docker push rhegishte/multi-nginx 
-        - docker push rhegishte/multi-server
-        - docker push rhegishte/multi-worker
+        - docker push changa2127/multi-client
+        - docker push changa2127/multi-nginx 
+        - docker push changa2127/multi-server
+        - docker push changa2127/multi-worker
