@@ -21,3 +21,15 @@ after_success:
         - docker push changa2127/multi-nginx 
         - docker push changa2127/multi-server
         - docker push changa2127/multi-worker
+deploy:
+        provider: elasticbeanstalk
+        region: ap-south-1
+        app: multi-docker
+        env: MultiDocker-env
+        bucket_name: elasticbeanstalk-ap-south-1-567549317008        
+        bucket_path: docker-multi
+        on:
+                branch: master
+        access_key_id: $AWS_ACCESS_KEY
+        secret_access_key:
+                secure: $AWS_SECRET_KEY
